@@ -80,3 +80,6 @@ build/
 .fvm/
 example/pubspec.lock
 pubspec.lock
+
+# Downloads of tool/build_mit_icon_fonts.py
+tool/.cache/
