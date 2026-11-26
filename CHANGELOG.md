@@ -1,6 +1,7 @@
 ## [next]
 
 * fix: `TimePicker` pads minutes to two digits, for example "05" instead of "5".
+* fix: Flyouts, including the `DropDownButton` and `SplitButton` menus, use the themes around their target, such as a nested `FluentTheme`, instead of the themes above the navigator.
 
 ## 4.18.1
 
