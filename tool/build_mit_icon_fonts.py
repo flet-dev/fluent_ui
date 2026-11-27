@@ -194,8 +194,13 @@ def build_font(
         src_glyphs[fsi_glyph].draw(TransformPen(pen, (scale, 0, 0, scale, dx, dy)))
         glyph_name = f"{name}_u{code:04X}"
         order.append(glyph_name)
-        outlines[glyph_name] = pen.glyph()
-        metrics[glyph_name] = (upm, 0)
+        glyph = pen.glyph()
+        glyph.recalcBounds(None)
+        outlines[glyph_name] = glyph
+        # The left side bearing must equal the outline's xMin: renderers move
+        # the outline so that its left edge sits at the bearing, so a bearing
+        # of 0 would left-align a glyph that is narrower than the em.
+        metrics[glyph_name] = (upm, glyph.xMin)
         cmap[code] = glyph_name
 
     fb = FontBuilder(upm, isTTF=True)
